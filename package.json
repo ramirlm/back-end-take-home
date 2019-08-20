@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src -d dist --source-maps",
-    "serve": "NODE_ENV=production node dist/index.js",
-    "start": "NODE_ENV=development babel-node src/index.js",
-    "dev": "DEBUG=server:debug NODE_ENV=development nodemon src/index.js --exec babel-node",
-    "test": "DEBUG=server:debug NODE_ENV=test mocha --require babel-core/register --reporter spec --exit   tests/ --exec babel-node",
-    "test:watch": "DEBUG=server:debug NODE_ENV=development mocha  --require babel-core/register --watch --reporter  spec   tests/ --exec babel-node",
+    "serve": "node dist/index.js --config config/production.json",
+    "start": "babel-node src/index.js --config development",
+    "dev": "nodemon src/index.js --exec babel-node --config config/development.json",
+    "test": "mocha --config config/test.json --require babel-core/register --reporter spec --exit   tests/ --exec babel-node",
+    "test:watch": "mocha  --require babel-core/register --watch --reporter  spec   tests/ --exec babel-node  --config config/test.json",
     "eslint": "eslint src/**/*.js --ignore-pattern \"node_modules/\""
   },
   "repository": {
@@ -32,9 +32,8 @@
     "babel-preset-node8": "^1.2.0",
     "chai": "^4.2.0",
     "config": "^3.2.2",
-    "express": "^4.17.1",
+    "debug": "^4.1.1",
     "mocha": "^6.2.0",
-    "mongoose": "^5.6.9",
     "nodemon": "^1.19.1",
     "supertest": "^4.0.2"
   },
