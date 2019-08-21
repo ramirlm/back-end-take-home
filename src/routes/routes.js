@@ -5,7 +5,7 @@ const router =express.Router();
 
 router.get('/route',async(req,res)=>{
     try {
-        const routes = await movie.find({}).exec();
+        const routes = await route.find({}).exec();
         res.status(200).send(routes);
     } catch (error) {
         res.status(500).send({message:'Interval server error'})
